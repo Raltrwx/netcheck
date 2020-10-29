@@ -7,7 +7,7 @@
 ################################################################################
 
 VAR_SCRIPTNAME=`basename "$0"`
-VAR_SCRIPTLOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+VAR_SCRIPTLOC=/usr/local/bin
 VAR_CONNECTED=true
 VAR_LOGFILE=log/connection.log
 VAR_SPEEDTEST_DISABLED=false
@@ -149,9 +149,9 @@ CHECK_FOR_SPEEDTEST() {
         echo -e "SpeedTest-CLI:    $COLOR_RED Not Installed $COLOR_RESET"
         INSTALL_SPEEDTEST
     fi
-    if [ -f "$VAR_SCRIPTLOC/speedtest-cli" ]; then
-      mv $VAR_SCRIPTLOC/speedtest-cli $VAR_SCRIPTLOC/speedtest-cli.py
-    fi
+    #if [ -f "$VAR_SCRIPTLOC/speedtest-cli" ]; then
+    #  mv $VAR_SCRIPTLOC/speedtest-cli $VAR_SCRIPTLOC/speedtest-cli.py
+    #fi
   else
       echo -e "SpeedTest-CLI:    $COLOR_RED Disabled $COLOR_RESET"
   fi
@@ -172,7 +172,7 @@ INSTALL_SPEEDTEST() {
 }
 
 RUN_SPEEDTEST() {
-  $VAR_SCRIPTLOC/speedtest-cli.py --simple | sed 's/^/                                                 /' | tee -a $VAR_LOGFILE
+  $VAR_SCRIPTLOC/speedtest-cli --simple | sed 's/^/                                                 /' | tee -a $VAR_LOGFILE
 }
 
 NET_CHECK() {
@@ -233,7 +233,7 @@ Description=Netcheck Service
 
 [Service]
 WorkingDirectory=$VAR_SCRIPTLOC/
-ExecStart=$VAR_SCRIPTLOC/VAR_SCRIPTNAME
+ExecStart=$VAR_SCRIPTLOC/netcheck.sh
 
 [Install]
 WantedBy=multi-user.target
