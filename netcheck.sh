@@ -240,10 +240,7 @@ WantedBy=multi-user.target
 EOL
       sudo systemctl enable netcheck.service >/dev/null
       PRINT_MANAGESERVICE
-      echo "Would you like to start netcheck as a service now?"
-      echo -n "(y/n): "
-      read answer
-      if [ "$answer" != "${answer#[Yy]}" ] ;then
+      echo "Starting Netcheck as a Service"
         sudo systemctl start netcheck
         exit
       else
