@@ -242,8 +242,8 @@ EOL
       PRINT_MANAGESERVICE
       echo "Starting Netcheck as a Service"
         sudo systemctl start netcheck
+	exit
       fi
-    fi
   fi
 }
 
